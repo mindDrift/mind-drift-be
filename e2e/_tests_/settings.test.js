@@ -38,6 +38,18 @@ describe('Settings API', () => {
     endTime: 16
   };
 
+  const settings3 = {
+    userId: '1234',
+    title: 'Different Breathing Type',
+    description: 'This is a different breathing technique.',
+    inhale: 3,
+    holdIn: 4,
+    exhale: 5,
+    holdOut: 1,
+    endTime: 16
+  };
+
+
   function postSettings(settings) {
     return request
       .post('/api/v1/settings')
@@ -76,20 +88,54 @@ describe('Settings API', () => {
   });
 
   it('gets settings', () => {
-    return Promise.all([
-      postSettings(settings),
-      postSettings(settings2)
-    ])
+    return postSettings(settings)
+      .then(() => {
+        return request
+          .get('/api/v1/settings?userId=5689')
+          .expect(200);
+      })
+      .then(({ body }) => {
+        expect(body.length).toBe(1);
+        expect(body[0].title).toBe('Box Breathing');
+      });
+  });
+
+  it('gets settings #2', () => {
+    return postSettings(settings2)
+      .then(() => {
+        return request
+          .get('/api/v1/settings?userId=123456')
+          .expect(200);
+      })
+      .then(({ body }) => {
+        expect(body.length).toBe(1);
+        expect(body[0].title).toBe('Different Breathing Type');
+      });
+  });
+
+  it('returns an empty array when no userId is input to URL', () => {
+    return postSettings(settings3)
       .then(() => {
         return request
           .get('/api/v1/settings')
           .expect(200);
       })
       .then(({ body }) => {
-        console.log(body);
-        // expect(body.length).toBe(2);
-        // expect(body[0].title).toBe('Box Breathing');
-        // expect(body[1].title).toBe('Different Breathing Type');
+        expect(body.length).toBe(0);
+      });
+  });
+
+  it('puts new settings', () => {
+    return postSettings(settings)
+      .then(settings => {
+        settings.title = 'new title';
+        return request
+          .put(`/api/v1/settings/${settings._id}`)
+          .send(settings)
+          .expect(200);
+      })
+      .then(({ body }) => {
+        expect(body.title).toBe('new title');
       });
   });
 
