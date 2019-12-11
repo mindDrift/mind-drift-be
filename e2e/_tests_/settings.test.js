@@ -139,4 +139,20 @@ describe('Settings API', () => {
       });
   });
 
+  it('deletes a setting', () => {
+    return postSettings(settings)
+      .then(response => {
+        return request
+          .delete(`/api/v1/settings/${response._id}`)
+          .expect(200)
+          .then(() => {
+            return request
+              .get('/api/v1/settings')
+              .expect(200)
+              .then(({ body }) => {
+                expect(body.length).toBe(0);
+              });
+          });
+      });
+  });
 });
