@@ -102,43 +102,4 @@ describe('Sessions', () => {
         expect(body[0].duration).toBe(16);
       });
   });
-
-  it('gets the last session', () => {
-    return Promise.all([postSessions(session), postSessions(session2)])
-      .then(() => {
-        return request
-          .get('/api/v1/sessions/lastsession?userId=123456')
-          .expect(200);
-      })
-      .then(({ body }) => {
-        console.log(body);
-        expect(body).toMatchInlineSnapshot(
-          {
-            ...session,
-            __v: 0,
-            _id: expect.any(String),
-            start: expect.any(String)
-          },
-          `
-          Object {
-            "__v": 0,
-            "_id": Any<String>,
-            "duration": 16,
-            "settings": Object {
-              "description": "This is a different breathing technique.",
-              "endTime": 16,
-              "exhale": 5,
-              "holdIn": 4,
-              "holdOut": 1,
-              "inhale": 3,
-              "title": "Different Breathing Type",
-              "userId": "123456",
-            },
-            "start": Any<String>,
-            "userId": "123456",
-          }
-        `
-        );
-      });
-  });
 });
