@@ -19,33 +19,7 @@ describe('Sessions', () => {
   const session = {
     start: new Date(),
     duration: 16,
-    userId: '123456',
-    settings: {
-      userId: '123456',
-      title: 'Different Breathing Type',
-      description: 'This is a different breathing technique.',
-      inhale: 3,
-      holdIn: 4,
-      exhale: 5,
-      holdOut: 1,
-      endTime: 16
-    }
-  };
-
-  const session2 = {
-    start: new Date(),
-    duration: 5,
-    userId: '123456',
-    settings: {
-      userId: '123456',
-      title: 'Another Breathing Pattern',
-      description: 'This is a new breathing technique.',
-      inhale: 1,
-      holdIn: 5,
-      exhale: 8,
-      holdOut: 4,
-      endTime: 20
-    }
+    userId: '123456'
   };
 
   function postSessions(sessions) {
@@ -74,16 +48,6 @@ describe('Sessions', () => {
             "__v": 0,
             "_id": Any<String>,
             "duration": 16,
-            "settings": Object {
-              "description": "This is a different breathing technique.",
-              "endTime": 16,
-              "exhale": 5,
-              "holdIn": 4,
-              "holdOut": 1,
-              "inhale": 3,
-              "title": "Different Breathing Type",
-              "userId": "123456",
-            },
             "start": Any<String>,
             "userId": "123456",
           }
