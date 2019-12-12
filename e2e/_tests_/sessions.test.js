@@ -116,7 +116,7 @@ describe("Settings API", () => {
           Array [
             Object {
               "__v": 0,
-              "_id": "5df2b0666dea27b50cdc6ffd",
+              "_id": "5df2b252730ef8b612a4af7e",
               "duration": 16,
               "settings": Object {
                 "description": "This is a different breathing technique.",
@@ -128,12 +128,12 @@ describe("Settings API", () => {
                 "title": "Different Breathing Type",
                 "userId": "123456",
               },
-              "start": "2019-12-12T21:25:57.962Z",
+              "start": "2019-12-12T21:34:10.592Z",
               "userId": "123456",
             },
             Object {
               "__v": 0,
-              "_id": "5df2b0666dea27b50cdc6ffe",
+              "_id": "5df2b252730ef8b612a4af7f",
               "duration": 5,
               "settings": Object {
                 "description": "This is a new breathing technique.",
@@ -145,7 +145,7 @@ describe("Settings API", () => {
                 "title": "Another Breathing Pattern",
                 "userId": "123456",
               },
-              "start": "2019-12-12T21:25:57.962Z",
+              "start": "2019-12-12T21:34:10.592Z",
               "userId": "123456",
             },
           ]
