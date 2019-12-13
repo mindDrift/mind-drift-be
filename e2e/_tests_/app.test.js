@@ -6,7 +6,7 @@ const app = require('../../lib/app');
 const connect = require('../../lib/utils/connect');
 const mongoose = require('mongoose');
 
-describe.skip('app routes', () => {
+describe('app routes', () => {
   beforeAll(() => {
     connect();
   });
