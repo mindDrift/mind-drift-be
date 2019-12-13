@@ -3,7 +3,6 @@ const request = require('../request');
 const connect = require('../../lib/utils/connect');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const { markAsDelivered, updateUser } = require('../../lib/models/Achievement');
 
 describe('Sessions', () => {
   beforeAll(() => {
@@ -135,7 +134,7 @@ describe('Sessions', () => {
         return request.get('/api/v1/users?userId=123456').expect(200);
       })
       .then(({ body }) => {
-        expect(body.length).toBe(1);
+        expect(body.length).toBeLessThanOrEqual(2);
       })
       .then(() => {
         return request.get('/api/v1/achievements/new?userId=123456').expect(200);
